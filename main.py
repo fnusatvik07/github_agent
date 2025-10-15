@@ -21,9 +21,12 @@ async def github_webhook(request: Request):
     data = json.loads(body)
     
     print("🎯 GitHub webhook received!")
-    print(f"Repository: {data.get('repository', {}).get('full_name', 'Unknown')}")
+    print("📄 Raw GitHub data:")
+    print("=" * 50)
+    print(json.dumps(data, indent=2))
+    print("=" * 50)
     
-    return {"status": "success", "message": "Webhook received"}
+    return {"status": "success", "message": "Raw data logged"}
 
 if __name__ == "__main__":
     print("Starting GitHub Agent...")
