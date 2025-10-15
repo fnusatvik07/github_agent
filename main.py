@@ -12,7 +12,7 @@ def health():
 @app.post("/add")
 def add_numbers(a: int, b: int):
     result = a + b
-    print(f"Adding {a} + {b} = {result}")  # Added logging
+    print(f"🧮 Adding {a} + {b} = {result}")  # Added emoji for easier log tracking
     return {"a": a, "b": b, "result": result}
 
 @app.post("/webhook")
