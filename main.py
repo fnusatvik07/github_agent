@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 import uvicorn
+import json
 
 app = FastAPI()
 
@@ -11,6 +12,16 @@ def health():
 def add_numbers(a: int, b: int):
     result = a + b
     return {"a": a, "b": b, "result": result}
+
+@app.post("/webhook")
+async def github_webhook(request: Request):
+    body = await request.body()
+    data = json.loads(body)
+    
+    print("🎯 GitHub webhook received!")
+    print(f"Repository: {data.get('repository', {}).get('full_name', 'Unknown')}")
+    
+    return {"status": "success", "message": "Webhook received"}
 
 if __name__ == "__main__":
     print("Starting GitHub Agent...")
