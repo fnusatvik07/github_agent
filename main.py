@@ -6,6 +6,7 @@ app = FastAPI()
 
 @app.get("/")
 def health():
+    # Health check endpoint
     return {"status": "healthy", "message": "API is running!"}
 
 @app.post("/add")
